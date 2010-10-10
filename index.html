@@ -1,0 +1,168 @@
+<html>
+
+<head>
+
+<title>Abhinay Omkar - Spoof of Google Homepage - 8th Sep, 2010</title>
+
+<!-- Yahoo CSS Reset -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/reset/reset-min.css">
+
+<style type="text/css">
+	
+/* 	Configuraiton */
+	body {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	.align-center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+/* 	Content	 */
+	#content{
+		position: relative;
+		top: 150px;
+	}
+	
+	body div {
+		text-align: center;
+	}
+
+/* 	Doodle & Cursor	 */
+	#doodle-logo {
+		width: 445px;
+	}
+
+	#dim {
+		display: block;
+		background: url("images/doodle-dim.png") repeat scroll 0 0 transparent;
+		height:40px;
+		width:445px;
+		z-index: 0;
+	}
+	
+	#light {
+		background: url("images/doodle-light.png") repeat scroll 0 0 transparent;
+		height:40px;
+		width:445px;
+		position: relative;
+		top: -39px;
+		left: 3px;
+		z-index: 1;
+	}
+	
+	#cursor {
+		background: none repeat scroll 0 0 black;
+		height: 55px;
+		position: relative;
+		top: -85px;
+		width: 2px;
+		z-index: 2;
+/* 		left: -220px; */
+	}
+
+/* 	Input Box	 */
+	#dtext {
+		position: absolute;
+		top: 80px;
+		width: 100%;
+	}
+	
+	#dtext input {
+		width: 600px;
+		height: 30px;
+		font-size: 16px;
+	}
+		
+/* 	Footer */
+	#footer {
+		text-shadow: 1px 1px 1px #a3a3a3;
+		color: #747474;
+		font-size: 12px;
+		font-family: Helvetica, Verdana, Arial, sans-serif;
+		display: block;
+		position: absolute !important;
+		top: 400px;
+		width: 100%;
+		z-index: 3;
+	}
+
+	#footer a {
+		color: #3b3b3b;
+		text-decoration: none;
+	}
+
+	#footer a:hover {
+		color: #3b3b3b;
+		text-decoration: underline;
+	}
+	
+/* 	tweet button */
+	#tweet {
+		position: fixed;
+		right: 0px;
+		text-align: right;
+		top: 10px;
+		width: 100%;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="content">
+
+	<div id="doodle-logo" class="align-center">
+		<div id="dim"></div>
+		<div id="light"></div>
+		<div id="cursor"></div>
+	</div>
+	
+	<div id="dtext">
+		<input type="text" />
+	</div>
+	
+	<div id="footer">
+		Made by @<a href="http://twitter.com/abhiomkar">abhiomkar</a>
+	</div>
+		
+</div>
+
+<div id="tweet">
+	<a href="http://twitter.com/share" class="twitter-share-button" data-text="Spoof of Google Homepage - Check this out" data-count="horizontal" data-via="abhiomkar">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+</div>
+
+<script type="text/javascript">
+	window.onload = function(){
+		document.getElementsByTagName('input')[0].focus();
+
+/* 		blink cursor  */
+		function blinkCursor(){
+			document.getElementById('cursor').style.visibility = "visible";
+			setTimeout(function(){document.getElementById('cursor').style.visibility = "hidden";}, 600);			
+		}
+
+		setInterval(blinkCursor, 1200);		
+		
+/* 		fill light doodle */
+		widthValues = [0, 40, 68, 108, 130, 168, 202, 230, 250, 295, 340, 375, 405, 440];
+/* 		The string value of document.getElementById('cursor').style.left */
+		cursorPos_s = "0";
+		cursorPos = parseInt(cursorPos_s);
+		
+		setInterval(checkTextBoxLength, 50);
+		
+		function checkTextBoxLength(){
+			indx = document.getElementsByTagName('input')[0].value.length;
+/* 			if (indx > widthValues.length){ return false; } */
+			document.getElementById('light').style.width = widthValues[indx];
+			lf = cursorPos + widthValues[indx];
+			document.getElementById('cursor').style.left = lf.toString() + "px";
+		}
+		
+	};
+</script>
+
+</body>
+
+</html>
